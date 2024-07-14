@@ -62,6 +62,7 @@ function useWebStorage() {
   };
 
   const addCookieData = (key, value, expiresIn = 1) => {
+    expiresIn = expiresIn==""?1:expiresIn;
     setCookieData((prevData) => ({
       ...prevData,
       [key]: value,

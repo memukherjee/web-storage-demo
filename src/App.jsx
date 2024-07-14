@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <header>
-        <h1 className="text-7xl font-semibold">Web Storage </h1>
+        <h1 className="text-7xl font-semibold text-accent">Web Storage </h1>
       </header>
       <main className="flex flex-col xl:flex-row justify-start xl:justify-between items-center xl:items-start mt-12 max-w-7xl mx-auto">
         {webStorages.map((storage, index) => (

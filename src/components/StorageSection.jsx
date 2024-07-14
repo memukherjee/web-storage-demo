@@ -13,9 +13,8 @@ function StorageSection({
 }) {
   const [key, setKey] = useState("");
   const [value, setValue] = useState("");
-  const [expiresIn, setExpiresIn] = useState();
+  const [expiresIn, setExpiresIn] = useState("");
 
-  console.log(stateData);
   const addDataHandler = () => {
     if (!key || !value) {
       return;
@@ -53,7 +52,10 @@ function StorageSection({
             name="expiresIn"
             placeholder="Expires in"
             value={expiresIn}
-            onChange={(e) => setExpiresIn(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = e.target.value;
+              setExpiresIn(value == "" ? value : parseInt(value))
+            }}
           />
         )}
         <button
@@ -75,23 +77,23 @@ function StorageSection({
         {Object.keys(stateData).length === 0
           ? "No data"
           : Object.entries(stateData).map(([key, value]) => (
-              <span
-                key={key}
-                className="flex justify-between items-center gap-x-1"
-              >
-                <span className="overflow-hidden bg-secondary text-secondary px-1 py-0.5">
-                  <span className="font-semibold">{key}:&nbsp;</span>
-                  <span className="break-words">{value}</span>
-                </span>
-                <button
-                  type="button"
-                  onClick={() => removeData(key)}
-                  className="text-red-400"
-                >
-                  <FaTrashAlt />
-                </button>
+            <span
+              key={key}
+              className="flex justify-between items-center gap-x-2"
+            >
+              <span className="overflow-hidden bg-secondary text-secondary px-4 py-0.5 grow text-left">
+                <span className="font-semibold">{key}:&nbsp;</span>
+                <span className="break-words">{value}</span>
               </span>
-            ))}
+              <button
+                type="button"
+                onClick={() => removeData(key)}
+                className="text-red-400"
+              >
+                <FaTrashAlt />
+              </button>
+            </span>
+          ))}
       </div>
     </section>
   );
